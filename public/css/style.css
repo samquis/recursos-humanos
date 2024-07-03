@@ -1,0 +1,52 @@
+body {
+    background: url('/Imagenes/fondo.avif') no-repeat center center;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-login {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para el formulario */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img-circular {
+    width: 150px; /* Tamaño ajustado para dispositivos pequeños */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h1 {
+    color: rgb(241, 245, 245);
+}
+
+@media (max-width: 768px) {
+    .container-login {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .img-circular {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .container-login {
+        width: 400px;
+    }
+
+    .img-circular {
+        width: 150px;
+        height: 150px;
+    }
+}

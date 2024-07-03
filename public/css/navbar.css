@@ -1,0 +1,24 @@
+body {
+    font-size: .875rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+}
+
+
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+    }
+}

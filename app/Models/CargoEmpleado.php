@@ -14,5 +14,6 @@ class CargoEmpleado extends Model
         'area_puesto_id'
     ];
 
+    
     public $timestamps = false;
 }

@@ -44,5 +44,15 @@ class Empleado extends Model
         return $this->belongsTo(Departamento::class);
     }
 
+    public function contratacion()
+    {
+        return $this->hasOne(Contratacion::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'empleado_id');
+    }
+
     public $timestamps = false;
 }

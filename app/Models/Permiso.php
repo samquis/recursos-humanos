@@ -17,5 +17,10 @@ class Permiso extends Model
         'descripcion'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
+
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'empleado_id');
+    }
 }

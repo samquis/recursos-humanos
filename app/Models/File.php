@@ -15,5 +15,10 @@ class File extends Model
         'empleado_id'
     ];
 
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'empleado_id');
+    }
+
     public $timestamps = false;
 }

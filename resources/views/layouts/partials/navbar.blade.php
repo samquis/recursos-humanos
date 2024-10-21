@@ -19,6 +19,12 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{{route('home.index')}}">
                     <i class="fas fa-home"></i>
+                    Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('dashboard.index')}}">
+                    <i class="fas fa-chart-line"></i>
                     Dashboard
                 </a>
             </li>
@@ -37,11 +43,24 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('items.index')}}">
+                    <i class="fas fa-list"></i>
+                    Items
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('permisos.index')}}">
                     <i class="fas fa-calendar-alt"></i>
                     Permiso
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('files.index')}}">
+                    <i class="fas fa-file-arrow-down"></i>
+                    Files
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-envelope"></i>

@@ -16,5 +16,14 @@ class Item extends Model
         'cargo_empleado_id'
     ];
 
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'empleado_id');
+    }
+
+    public function cargoEmpleado()
+    {
+        return $this->belongsTo(CargoEmpleado::class, 'cargo_empleado_id');
+    }
     public $timestamps = false;
 }

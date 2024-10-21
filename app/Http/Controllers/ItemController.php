@@ -9,26 +9,77 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function edit($id)
+    // Método para mostrar la lista de items con la opción de búsqueda
+    public function index(Request $request)
     {
-        $item = Item::find($id);
-        $empleados = Empleado::all();   
-        $cargoEmpleados = CargoEmpleado::all();
+        $search = $request->input('search');
+        $items = Item::when($search, function($query, $search) {
+            return $query->where('num_item', 'like', "%{$search}%");
+        })->get();
 
-        return view('items.edit', compact('item', 'empleados', 'cargoEmpleados'));
+        return view('items.index', compact('items', 'search'));
     }
 
-    public function update(Request $request, $id)
+    // Método para mostrar el formulario de creación de un nuevo item
+    public function create()
     {
-        $request->validate([
-            'num_item' => 'required|stringmax:255',
-            'descripcion' => 'nullable|string',
-            'empleado_id' => 'required|exists:empleado,id',
-            'cargo_empleado_id' => 'required|exists:cargo_empleado,id',
+        return view('items.create');
+    }
+
+    // Método para almacenar un nuevo item
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'num_item' => 'required|unique:item|max:255',
+            'descripcion' => 'nullable|string|max:255',
+            'empleado_id' => 'required|integer',
+            'cargo_empleado_id' => 'required|integer',
         ]);
 
+        Item::create($validatedData);
+
+        return redirect()->route('items.index')->with('success', 'Item registrado correctamente');
+    }
+
+    // Método para mostrar un item específico
+    public function show($id)
+    {
         $item = Item::findOrFail($id);
-        $item->update($request->all());
-        return redirect()->route('items.index')->with('success', 'Item actualizado con éxito');
+        return view('items.show', compact('item'));
+    }
+
+    // Método para mostrar el formulario de edición de un item
+    public function edit($id)
+    {
+        $item = Item::findOrFail($id);
+        $empleados = Empleado::all();  
+        $cargos = CargoEmpleado::all();
+        return view('items.edit', compact('item', 'empleados', 'cargos'));
+    }
+
+    // Método para actualizar un item
+    public function update(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'num_item' => 'required|max:255|unique:item,num_item,' . $item->id,
+            'descripcion' => 'nullable|string|max:255',
+            'empleado_id' => 'required|integer',
+            'cargo_empleado_id' => 'required|integer',
+        ]);
+
+        $item->update($validatedData);
+
+        return redirect()->route('items.index')->with('success', 'Item actualizado correctamente');
+    }
+
+    // Método para eliminar un item
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('items.index')->with('success', 'Item eliminado correctamente');
     }
 }

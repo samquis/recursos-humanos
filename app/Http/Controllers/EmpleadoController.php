@@ -169,8 +169,10 @@ class EmpleadoController extends Controller
         $cargoEmpleado = CargoEmpleado::all();
         $nivelesEstudio = NivelEstudio::all();
         $especialidades = Especialidad::all();
+        $tipo_contratos = Contratacion::all();
+        $horarioAsignados = HorarioAsignado::all();
         
-        return view('empleado.edit', compact('empleado','departamentos', 'distritos', 'areasPuesto', 'cargoEmpleado', 'nivelesEstudio', 'especialidades')); 
+        return view('empleado.edit', compact('empleado','departamentos', 'distritos', 'areasPuesto', 'cargoEmpleado', 'nivelesEstudio', 'especialidades','tipo_contratos','horarioAsignados')); 
     }
 
     public function update(Request $request, $id)
@@ -195,35 +197,41 @@ class EmpleadoController extends Controller
             'cargo_empleado_id' => 'required',
             'nivel_estudio_id' => 'required',
             'especialidad_id' => 'required',
-            'tipo_contrato' => 'required',
+            'tipo_contrato_id' => 'required|exists:contratacion,id',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'nullable|date',
             'num_item' => 'required',
             'descripcion_item' => 'nullable',
-            'hora_inicio' => 'required',
+           /* 'hora_inicio' => 'required',
             'hora_fin' => 'required',
-            'turno_id' => 'required',
+            'turno_id' => 'required',*/
         ]);
 
         $empleado->update($validatedData);
 
         // Actualizar contratacion, item y horario asignado
-        $empleado->contratacion->update([
-            'tipo_contrato' => $validatedData['tipo_contrato'],
-            'fecha_inicio' => $validatedData['fecha_inicio'],
-            'fecha_fin' => $validatedData['fecha_fin'],
-        ]);
-
-        $empleado->item->update([
-            'num_item' => $validatedData['num_item'],
-            'descripcion' => $validatedData['descripcion_item'],
-        ]);
-
-        $empleado->horarioAsignado->update([
-            'hora_inicio' => $validatedData['hora_inicio'],
-            'hora_fin' => $validatedData['hora_fin'],
-            'turno_id' => $validatedData['turno_id'],
-        ]);
+        if ($empleado->contratacion) {
+            $empleado->contratacion->update([
+                'tipo_contrato' => $validatedData['tipo_contrato'],
+                'fecha_inicio' => $validatedData['fecha_inicio'],
+                'fecha_fin' => $validatedData['fecha_fin'],
+            ]);
+        }
+        
+        if ($empleado->item) {
+            $empleado->item->update([
+                'num_item' => $validatedData['num_item'],
+                'descripcion' => $validatedData['descripcion_item'],
+            ]);
+        }
+        
+        if ($empleado->horarioAsignado) {
+            $empleado->horarioAsignado->update([
+                'hora_inicio' => $validatedData['hora_inicio'],
+                'hora_fin' => $validatedData['hora_fin'],
+                'turno_id' => $validatedData['turno_id'],
+            ]);
+        }
 
             return redirect()->route('empleado.index')->with('success', 'Empleado actualizado correctamente');
     }

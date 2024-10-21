@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PermisoController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +57,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /*Route::get('/empleados', [EmpleadoController::class, 'create'])->name('empleados.create');
     Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
     */
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
@@ -76,4 +83,22 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('/empleado/{id}', [EmpleadoController::class, 'destroy'])->name('empleado.destroy');
     
     Route::get('empleado/{id}', [EmpleadoController::class, 'show'])->name('empleado.show');
+
+    Route::get('items/index', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+
+    Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+    Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
+
+    Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
+
+    Route::resource('permisos', PermisoController::class);
+
+    Route::resource('files', FileController::class);
+    Route::get('files/{id}/edit', [FileController::class, 'edit'])->name('files.edit');
+    Route::put('files/{id}', [FileController::class, 'update'])->name('files.update');
+   
+
 });

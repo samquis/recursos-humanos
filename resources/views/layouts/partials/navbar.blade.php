@@ -56,8 +56,15 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('files.index')}}">
-                    <i class="fas fa-file-arrow-down"></i>
+                    <i class="fas fa-file-download"></i>
                     Files
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contrataciones.index')}}">
+                    <i class="fas fa-file"></i>
+                    Contratatos
                 </a>
             </li>
 

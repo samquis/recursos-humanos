@@ -6,6 +6,7 @@ use App\Models\Empleado;
 use App\Models\Item;
 use App\Models\Permiso;
 use App\Models\User;
+use App\Models\Contratacion;
 
 class DashboardController extends Controller
 {
@@ -22,9 +23,12 @@ class DashboardController extends Controller
         
         // Consultar el número total de usuarios
         $totalUsers = User::count();
+
+         // Consultar el número total de contrataciones temporales
+         $totalContratacionesTemporales = Contratacion::where('tipo_contrato', 'temporal')->count();
         
         // Pasar los datos a la vista
-        return view('dashboard.index', compact('totalEmpleados', 'totalItems', 'totalPermisos', 'totalUsers'));
+        return view('dashboard.index', compact('totalEmpleados', 'totalItems', 'totalPermisos', 'totalUsers','totalContratacionesTemporales'));
     }
 }
 

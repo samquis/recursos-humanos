@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <!--<div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="num_item">Número de Ítem:</label>
                                 <div class="input-group">
@@ -68,7 +68,7 @@
                                     <textarea id="descripcion_item" name="descripcion_item" class="form-control"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="hora_inicio">Hora de Inicio:</label>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="form-group  text-center">
                                 <a href="{{ route('empleado.create-step2') }}" class="btn btn-secondary ml-2">Atrás</a>
-                                <a href="#" class="btn btn-danger ">Cancelar</a>
+                                <a href="{{ route('empleado.index')}}" class="btn btn-danger ">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Siguiente</button>
                             </div>
                         </div>

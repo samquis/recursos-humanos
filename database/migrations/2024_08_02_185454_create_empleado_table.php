@@ -35,7 +35,8 @@ return new class extends Migration
         $table->unsignedBigInteger('nivel_estudio_id')->nullable();
         $table->unsignedBigInteger('especialidad_id')->nullable();
         $table->date('fecha_contratado')->nullable();
-        $table->unsignedBigInteger('turno_id')->nullable();
+        $table->unsignedBigInteger('turno_trabajo_id')->nullable();
+        $table->unsignedBigInteger('licencia_conducir_id')->nullable();
         $table->timestamps();
 
         $table->foreign('tipo_sangre_id')->references('id')->on('tipo_sangre');
@@ -45,7 +46,8 @@ return new class extends Migration
         $table->foreign('cargo_empleado_id')->references('id')->on('cargo_empleado');
         $table->foreign('nivel_estudio_id')->references('id')->on('nivel_estudio');
         $table->foreign('especialidad_id')->references('id')->on('especialidad');
-        $table->foreign('turno_id')->references('id')->on('turno_trabajo');
+        $table->foreign('turno_trabajo_id')->references('id')->on('turno_trabajo');
+        $table->foreign('licencia_conducir_id')->references('id')->on('licencia_conducir');
     });
 }
 

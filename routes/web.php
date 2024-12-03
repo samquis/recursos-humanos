@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContratacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +36,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Register Routes
          */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
-        Route::post('/register', 'RegisterController@register')->name('register.perform');
+       
 
         /**
          * Login Routes
@@ -53,6 +53,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
     });
 
+    Route::get('/register', 'RegisterController@show')->name('register.show');
+    Route::post('/register', 'RegisterController@register')->name('register.perform');
     
     /*Route::get('/empleados', [EmpleadoController::class, 'create'])->name('empleados.create');
     Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
@@ -99,6 +101,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::resource('files', FileController::class);
     Route::get('files/{id}/edit', [FileController::class, 'edit'])->name('files.edit');
     Route::put('files/{id}', [FileController::class, 'update'])->name('files.update');
+
+    Route::resource('contrataciones', ContratacionController::class);
    
 
 });

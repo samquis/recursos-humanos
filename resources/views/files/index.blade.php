@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Empleados</title>
+    <title>Files Personales</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
    
  
@@ -85,7 +85,7 @@
                                                 <form action="{{ route('files.destroy', $file->id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este File?')">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -95,6 +95,9 @@
                                     </tbody>
                                 </table>
                             @endif
+                            <div class="d-flex justify-content-center">
+                                {{ $files->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>

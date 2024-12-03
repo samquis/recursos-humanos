@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Empleados</title>
+    <title>Items</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -60,7 +60,7 @@
                                             <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este Item?')">
                                                 <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
@@ -70,6 +70,10 @@
                             </tbody>
                         </table>
                     @endif
+
+                    <div class="d-flex justify-content-center">
+                        {{ $items->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </main>
         </div>

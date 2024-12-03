@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container d-flex flex-column align-items-center">
-    <img class="mb-4 img-circular" src="{!! url('images/bootstrap-logo.svg') !!}" alt="Logo" width="72" height="57">
+    <!--<img class="mb-4 img-circular" src="{!! url('images/bootstrap-logo.svg') !!}" alt="Logo" width="72" height="57">-->
     <div class="container-register w-100 mt-4" style="max-width: 400px;">
         <form method="post" action="{{ route('register.perform') }}" class="w-100">
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />

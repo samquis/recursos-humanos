@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('licencia_conducir', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_file');
-            $table->longblob('file_pdf');
-            $table->unsignedBigInteger('empleado_id');
+            $table->string('tipo_vehiculo');
+            $table->string('categoria');
             $table->timestamps();
-    
-            $table->foreign('empleado_id')->references('id')->on('empleado');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('licencia_conducir');
     }
 };

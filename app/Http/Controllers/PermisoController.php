@@ -25,7 +25,7 @@ class PermisoController extends Controller
         }
 
         // Obtener todos los permisos filtrados o no
-        $permisos = $query->with('empleado')->get();
+        $permisos = $query->with('empleado')->paginate(1);
 
         return view('permisos.index', compact('permisos'));
     }

@@ -19,7 +19,7 @@
             @include('layouts.partials.navbar')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="container mt-2">
-                    <h2 class="mb-3">Registro de Persona - Paso 2</h2>
+                    <h2 class="mb-3">Registro de Personal - Paso 2</h2>
                     <form action="{{ route('empleado.postCreateStep2') }}" method="POST">
                         @csrf
                         <div class="form-row">
@@ -104,9 +104,40 @@
                                 </div>
                             </div>
                         </div>
+                        <H4>Datos de Licencia de Conducir</H4>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="licencia_conducir_id">Tipo Vehiculo:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-car"></i></span>
+                                    </div>
+                                    <select id="licencia_conducir_id" name="licencia_conducir_id" class="form-control">
+                                        @foreach($licenciasConducir as $licenciaConducir)
+                                            <option value="{{ $licenciaConducir->id }}">{{ $licenciaConducir->tipo_vehiculo }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>   
+                        
+                            <div class="form-group col-md-4">
+                                    <label for="licencia_conducir_id">Categoria de Licencia:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-car"></i></span>
+                                        </div>
+                                        <select id="licencia_conducir_id" name="licencia_conducir_id" class="form-control">
+                                            @foreach($licenciasConducir as $licenciaConducir)
+                                                <option value="{{ $licenciaConducir->id }}">{{ $licenciaConducir->categoria }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
                         <div class="form-group text-center mt-4">
                             <a href="{{ route('empleado.create-step1') }}" class="btn btn-secondary">Atrás</a>
-                            <a href="#" class="btn btn-danger">Cancelar</a>
+                            <a href="{{ route('empleado.index')}}" class="btn btn-danger">Cancelar</a>
                             <button type="submit" class="btn btn-primary">Siguiente</button>
                         </div>
                     </form>

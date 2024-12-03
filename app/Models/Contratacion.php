@@ -21,5 +21,10 @@ class Contratacion extends Model
         return $this->belongsTo(TipoContrato::class, 'tipo_contrato_id');
     }   
 
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class,'empleado_id');
+    }
+
     public $timestamps = false;
 }

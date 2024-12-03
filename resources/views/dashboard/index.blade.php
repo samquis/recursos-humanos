@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Empleados</title>
+    <title>Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
    
  
@@ -30,7 +30,7 @@
                         <div class="card text-white bg-primary mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">{{ $totalEmpleados }} Empleados</h5>
+                                    <h5 class="card-title">{{ $totalEmpleados }} Funcionarios</h5>
                                     <i class="fas fa-users fa-2x"></i>
                                 </div>
                                 <p class="card-text">Todo el personal registrado</p>
@@ -67,6 +67,19 @@
                                     <i class="fas fa-user fa-2x"></i>
                                 </div>
                                 <p class="card-text">Usuarios registrados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-secondary mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">{{ $totalContratacionesTemporales }} Contratos</h5>
+                                    <i class="fas fa-file fa-2x"></i>
+                                </div>
+                                <p class="card-text">Contratos Temporales</p>
                             </div>
                         </div>
                     </div>

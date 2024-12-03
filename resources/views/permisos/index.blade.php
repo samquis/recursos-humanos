@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Empleados</title>
+    <title>Permisos</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
    
  
@@ -64,7 +64,7 @@
                                             <form action="{{ route('permisos.destroy', $permiso->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este Permiso?')">
                                                      <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
@@ -74,6 +74,9 @@
                             </tbody>
                         </table>
                     @endif
+                    <div class="d-flex justify-content-center">
+                        {{ $permisos->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </main>
         </div>

@@ -39,7 +39,7 @@
                                 <div class="form-group  text-center mt-4">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                     <a href="{{ route('empleado.create-step2') }}" class="btn btn-secondary ml-2">Atrás</a>
-                                    <a href="#" class="btn btn-danger ml-2">Cancelar</a>
+                                    <a href="{{ route('empleado.index')}}" class="btn btn-danger ml-2">Cancelar</a>
                                 </div> 
                             </form>
                             @if (session('success'))

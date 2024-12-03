@@ -21,13 +21,13 @@
                     <form action="{{ route('empleado.postCreateStep1') }}" method="POST">
                         @csrf
                         <div class="form-row">
-                                    <div class="col-md-12">
+                                    <!--<div class="col-md-12">
                                         <div class="form-group text-center">
                                             <label for="imagen">Imagen:</label>
                                             <input type="file" class="form-control-file mx-auto d-block" id="imagen" name="imagen">
                                             <img id="preview-image" src="#" alt="Preview Image" class="preview-image mx-auto d-block"/>
                                         </div>
-                                    </div>
+                                    </div>-->
                             <div class="form-group col-md-4">
                                 <label for="ci">N° Carnet:</label>
                                 <div class="input-group">
@@ -88,7 +88,7 @@
                                 <label for="estado_civil">Estado Civil:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-heart"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
                                     <select id="estado_civil" name="estado_civil" class="form-control">
                                         <option value="soltero" {{ old('estado_civil') == 'soltero' ? 'selected' : '' }}>Soltero/a</option>
@@ -101,10 +101,10 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="telefono">Teléfono:</label>
+                                <label for="telefono">N° Celular:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                     </div>
                                     <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}">
                                 </div>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center mt-4">
-                            <a href="#" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{ route('empleado.index') }}" class="btn btn-secondary">Cancelar</a>
                             <button type="submit" class="btn btn-primary">Siguiente</button>
                             
                         </div>

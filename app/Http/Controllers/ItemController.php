@@ -15,7 +15,7 @@ class ItemController extends Controller
         $search = $request->input('search');
         $items = Item::when($search, function($query, $search) {
             return $query->where('num_item', 'like', "%{$search}%");
-        })->get();
+        })->paginate(1);
 
         return view('items.index', compact('items', 'search'));
     }
@@ -23,7 +23,9 @@ class ItemController extends Controller
     // Método para mostrar el formulario de creación de un nuevo item
     public function create()
     {
-        return view('items.create');
+        $empleados = Empleado::all();
+        $cargos = CargoEmpleado::all();
+        return view('items.create', compact('empleados', 'cargos'));
     }
 
     // Método para almacenar un nuevo item
@@ -32,8 +34,10 @@ class ItemController extends Controller
         $validatedData = $request->validate([
             'num_item' => 'required|unique:item|max:255',
             'descripcion' => 'nullable|string|max:255',
-            'empleado_id' => 'required|integer',
+            'empleado_id' => 'required|integer|unique:item,empleado_id',
             'cargo_empleado_id' => 'required|integer',
+        ], [
+            'empleado_id.unique' => 'El empleado ya se encuentra regitrado con un item existente.'
         ]);
 
         Item::create($validatedData);
@@ -65,7 +69,7 @@ class ItemController extends Controller
         $validatedData = $request->validate([
             'num_item' => 'required|max:255|unique:item,num_item,' . $item->id,
             'descripcion' => 'nullable|string|max:255',
-            'empleado_id' => 'required|integer',
+            'empleado_id' => 'required|integer|unique:item,empleado_id' . $item->id,
             'cargo_empleado_id' => 'required|integer',
         ]);
 

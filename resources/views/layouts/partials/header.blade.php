@@ -10,10 +10,15 @@
         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
     </form>
     <div class="user-info d-flex align-items-center">
-        <img src="https://via.placeholder.com/40" alt="User Image" class="d-none d-md-block">
-        <div class="text-end px-2">
-            <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+        <img src="/Imagenes/user.png" alt="User Image" width="40px" class="d-none d-md-block">   
+        @auth
+        <div class="navbar-text px-2 text-light">
+            <b>{{auth()->user()->name}}</b>
         </div>
+        <div class="text-end px-2">
+            <a href="{{ route('logout.perform') }}" class="btn btn-outline-primary me-2"><b>Cerrar Sesion</b></a>
+        </div>
+        @endauth
         <!--<div class="text-end">
             <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
             <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>

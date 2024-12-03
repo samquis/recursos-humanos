@@ -54,8 +54,7 @@ class FileController extends Controller
         }
 
         // Obtenemos los archivos filtrados o no
-        $files = File::paginate(10);
-        $files = $query->get();
+        $files = $query->paginate(1);
 
         return view('files.index', compact('files'));
     }
@@ -72,7 +71,7 @@ class FileController extends Controller
     {
         $validatedData = $request->validate([
             'nombre_file' => 'required|string|max:255',
-            'file_pdf' => 'required|file|mimes:pdf|max:4096', // Limitar solo a archivos PDF
+            'file_pdf' => 'required|file|mimes:pdf|max:40960', // Limitar solo a archivos PDF
             'empleado_id' => 'required|exists:empleados,id',
         ]);
 
@@ -111,7 +110,7 @@ class FileController extends Controller
         // Validación del nombre del archivo y del PDF
         $request->validate([
             'nombre_file' => 'required|string|max:255',
-            'file_pdf' => 'nullable|mimes:pdf|max:3062', 
+            'file_pdf' => 'nullable|mimes:pdf|max:40960', 
         ]);
     
         // Actualizar el nombre del archivo

@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +29,7 @@
                             <p><strong>Apellido Materno:</strong>{{ $empleado->apellido_m }}</p>
                             <p><strong>Fecha Nacimiento:</strong>{{ $empleado->fecha_nacimiento }}</p>
                             <p><strong>Estado Civil:</strong> {{ $empleado->estado_civil }}</p>
-                            <p><strong>Teléfono:</strong> {{ $empleado->telefono }}</p>
+                            <p><strong>N° Celular:</strong> {{ $empleado->telefono }}</p>
                         </div>
 
                         <!-- Columna 2 -->
@@ -34,17 +37,18 @@
                             <p><strong>Dirección Principal:</strong> {{ $empleado->direccion1 }}</p>
                             <p><strong>Dirección Secundaria:</strong> {{ $empleado->direccion2 }}</p>
                             <p><strong>Género:</strong> {{ $empleado->genero }}</p>
-                            <p><strong>Departamento:</strong> {{ $empleado->departamento ? $empleado->departamento->nombre : 'Sin Designación' }}</p>
-                            <p><strong>Distrito:</strong> {{ $empleado->distrito ? $empleado->distrito->nombre : 'Sin Distrito' }}</p>
-                            <p><strong>Área Puesto:</strong> {{ $empleado->area_puesto ? $empleado->area_puesto->nombre : 'Sin Puestos' }}</p>
+                            <p><strong>Nivel de Estudio:</strong> {{ $empleado->nivel_estudio ? $empleado->nivel_estudio->descripcion : 'Sin Estudio' }}</p>
+                            <p><strong>Especialidad:</strong> {{ $empleado->especialidad ? $empleado->especialidad->nombre_especialidad : 'Sin Especialidad' }}</p>
+                            <p><strong>LIcencia Conducir:</strong> {{ $empleado->licencia_conducir ? $empleado->licencia_conducir->categoria: 'Sin Licencia' }} </p>
                         </div>
 
                         <!-- Columna 3 -->
                         <div class="col-md-3">
+                            <p><strong>Departamento:</strong> {{ $empleado->departamento ? $empleado->departamento->nombre : 'Sin Designación' }}</p>
+                            <p><strong>Distrito:</strong> {{ $empleado->distrito ? $empleado->distrito->nombre : 'Sin Distrito' }}</p>
+                            <p><strong>Área Puesto:</strong> {{ $empleado->area_puesto ? $empleado->area_puesto->nombre : 'Sin Puestos' }}</p>
                             <p><strong>Cargo:</strong> {{ $empleado->cargo_empleado ? $empleado->cargo_empleado->cargo : 'Sin cargo' }}</p>
-                            <p><strong>Nivel de Estudio:</strong> {{ $empleado->nivel_estudio ? $empleado->nivel_estudio->descripcion : 'Sin Estudio' }}</p>
-                            <p><strong>Especialidad:</strong> {{ $empleado->especialidad ? $empleado->especialidad->nombre_especialidad : 'Sin Especialidad' }}</p>
-                            <p><strong>Tipo de Contrato:</strong> {{ $empleado->contratacion ? $empleado->contratacion->tipo_contratacion : 'Sin Contrato' }}</p>
+                            <p><strong>Tipo de Contrato:</strong> {{ $empleado->contratacion ? $empleado->contratacion->tipo_contrato : 'Sin Contrato' }}</p>
                             <p><strong>Fecha Inicio:</strong> {{ $empleado->contratacion ? $empleado->contratacion->fecha_inicio : 'Sin Fecha' }}</p>
                             <p><strong>Fecha Fin:</strong> {{ $empleado->contratacion ? $empleado->contratacion->fecha_fin : 'Sin Fecha' }}</p>
                         </div>

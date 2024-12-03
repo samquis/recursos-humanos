@@ -25,7 +25,7 @@
             @include('layouts.partials.navbar')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="container mt-2">
-                    <h2 class="text-center">Editar información</h2>
+                    <h2 class="text-center">Editar información Personal</h2>
                         <form action="{{ route('empleado.update', $empleado->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label for="telefono">Teléfono:</label>
+                                        <label for="telefono">N° Celular:</label>
                                         <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono', $empleado->telefono) }}">
                                     </div>
                                 
@@ -152,9 +152,11 @@
                                         <label for="tipo_contrato">Tipo Contrato:</label>
                                         <select class="form-control" id="tipo_contrato_id" name="tipo_contrato_id" required>
                                             <option value="">Seleccione tipo de contrato</option>
-                                            <option value="Indefinida" {{ old('tipo_contrato', $empleado->contratacion->tipo_contrato ?? '') == 'Indefinida' ? 'selected' : '' }}>Indefinida</option>
-                                            <option value="Temporal" {{ old('tipo_contrato', $empleado->contratacion->tipo_contrato ?? '') == 'Temporal' ? 'selected' : '' }}>Temporal</option>
-                                            <option value="forma_alternativa" {{ old('tipo_contrato', $empleado->contratacion->tipo_contrato ?? '') == 'forma_alternativa' ? 'selected' : '' }}>Forma Alternativa</option>
+                                            @foreach ($tipo_contratos as $contrato)
+                                                <option value="{{ $contrato->id }}" {{ old('tipo_contrato_id', $empleado->contratacion->tipo_contrato_id ?? '') == $contrato->id ? 'selected' : '' }}>
+                                                    {{ $contrato->tipo_contrato }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>    
@@ -178,6 +180,20 @@
                                     <div class="form-group col-md-2">
                                         <label for="descripcion_item">Descripción del Item:</label>
                                         <textarea class="form-control" id="descripcion_item" name="descripcion_item">{{ $empleado->item ? $empleado->item->descripcion : '' }}</textarea>
+                                    </div>
+
+                                    <!--<div class="form-group col-md-2">
+                                        <label for="descripcion">Turno Trabajo:</label>
+                                        <textarea class="form.control" id="descripcion" name="descripcion">{{ $empleado->turno_trabajo ? $empleado->turno_trabajo->descripcion : ''}}</textarea>
+                                    </div>-->
+
+                                    <div class="form-group col-md-2">
+                                        <label for="turno_trabajo_id">Turno Trabajo</label>
+                                        <select class="form-control" id="turno_trabajo_id" name="turno_trabajo_id" required>
+                                            @foreach($turno_trabajos as $turno_trabajo)
+                                            <option value="{{ $turno_trabajo->id }}" {{ $empleado->turno_trabajo_id == $turno_trabajo->id ? 'selected' : '' }}>{{ $turno_trabajo->descripcion }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
